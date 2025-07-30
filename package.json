@@ -1,11 +1,11 @@
 {
-    "DingdingMsg": {
+    "BaoheMsg": {
         "name": "宝盒机器人",
         "description": "支持使用宝盒机器人发送消息通知。",
         "labels": "消息通知,宝盒机器人",
-        "version": "1.12",
+        "version": "1.01",
         "icon": "https://baohe.zto.com/static/media/baohe_icon.816fc0a540ce2a956d4e.png",
-        "author": "nnlegenda",
+        "author": "satter1",
         "level": 1,
         "v2": true
     }
