@@ -13,21 +13,21 @@ from typing import Any, List, Dict, Tuple
 from app.log import logger
 
 
-class DingdingMsg(_PluginBase):
+class BaoheMsg(_PluginBase):
     # 插件名称
-    plugin_name = "钉钉机器人"
+    plugin_name = "宝盒机器人"
     # 插件描述
-    plugin_desc = "支持使用钉钉机器人发送消息通知。"
+    plugin_desc = "支持使用宝盒机器人发送消息通知。"
     # 插件图标
-    plugin_icon = "Dingding_A.png"
+    plugin_icon = "https://baohe.zto.com/static/media/baohe_icon.816fc0a540ce2a956d4e.png"
     # 插件版本
-    plugin_version = "1.12"
+    plugin_version = "1.01"
     # 插件作者
-    plugin_author = "nnlegenda"
+    plugin_author = "satter1"
     # 作者主页
-    author_url = "https://github.com/nnlegenda"
+    author_url = "https://github.com/satter1"
     # 插件配置项ID前缀
-    plugin_config_prefix = "dingdingmsg_"
+    plugin_config_prefix = "baohemsg_"
     # 加载顺序
     plugin_order = 25
     # 可使用的用户级别
@@ -105,7 +105,7 @@ class DingdingMsg(_PluginBase):
                                         'component': 'VTextField',
                                         'props': {
                                             'model': 'token',
-                                            'label': '钉钉机器人token',
+                                            'label': '宝盒机器人token',
                                             'placeholder': 'xxxxxx',
                                         }
                                     }
@@ -237,15 +237,15 @@ class DingdingMsg(_PluginBase):
                 errno = ret_json.get('errcode')
                 error = ret_json.get('errmsg')
                 if errno == 0:
-                    logger.info("钉钉机器人消息发送成功")
+                    logger.info("宝盒机器人消息发送成功")
                 else:
-                    logger.warn(f"钉钉机器人消息发送失败，错误码：{errno}，错误原因：{error}")
+                    logger.warn(f"宝盒机器人消息发送失败，错误码：{errno}，错误原因：{error}")
             elif res is not None:
-                logger.warn(f"钉钉机器人消息发送失败，错误码：{res.status_code}，错误原因：{res.reason}")
+                logger.warn(f"宝盒机器人消息发送失败，错误码：{res.status_code}，错误原因：{res.reason}")
             else:
-                logger.warn("钉钉机器人消息发送失败，未获取到返回信息")
+                logger.warn("宝盒机器人消息发送失败，未获取到返回信息")
         except Exception as msg_e:
-            logger.error(f"钉钉机器人消息发送失败，{str(msg_e)}")
+            logger.error(f"宝盒机器人消息发送失败，{str(msg_e)}")
 
     def stop_service(self):
         """
@@ -265,5 +265,5 @@ class DingdingMsg(_PluginBase):
         hmac_code = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
         sign = urllib.parse.quote_plus(base64.b64encode(hmac_code))
         # 组合请求的完整 URL
-        full_url = f'https://oapi.dingtalk.com/robot/send?access_token={access_token}&timestamp={timestamp}&sign={sign}'
+        full_url = f'https://boxapi.zto.com/robot/send?access_token={access_token}&timestamp={timestamp}&sign={sign}'
         return full_url
